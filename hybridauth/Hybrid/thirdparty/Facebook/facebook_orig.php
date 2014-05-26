@@ -141,7 +141,7 @@ class Facebook extends BaseFacebook
     }
 
     $session_var_name = $this->constructSessionVariableName($key);
-	Session::instance()->set($session_var_name, $value);
+    $_SESSION[$session_var_name] = $value;
   }
 
   /**
@@ -156,9 +156,8 @@ class Facebook extends BaseFacebook
     }
 
     $session_var_name = $this->constructSessionVariableName($key);
-	$session_val = Session::instance()->get($session_var_name);
-    return !is_null($session_val)?
-		$session_val : $default;
+    return isset($_SESSION[$session_var_name]) ?
+      $_SESSION[$session_var_name] : $default;
   }
 
   /**
@@ -173,9 +172,8 @@ class Facebook extends BaseFacebook
     }
 
     $session_var_name = $this->constructSessionVariableName($key);
-	  $session_val = Session::instance()->get($session_var_name);
-    if (!is_null($session_val)) {
-		Session::instance()->delete($session_var_name);
+    if (isset($_SESSION[$session_var_name])) {
+      unset($_SESSION[$session_var_name]);
     }
   }
 
