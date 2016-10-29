@@ -8,8 +8,10 @@
 /**
  * @ignore
  */
-class OAuthException extends Exception {
-	// pass
+if (!class_exists('OAuthException', false)) {
+  class OAuthException extends Exception {
+    // pass
+  }
 }
 
 
